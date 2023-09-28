@@ -18,13 +18,13 @@ outputFile = 'OutputCSV.txt'
 isCopying = False
 fileIndex = 0
 i: int = 0
+state = 0
 
 with open(inputFile) as file:
     for line in file:
 
         states = ['', '[MARS]','[CONFIG LIST]']
         #           1   
-        state = 0
 
         data = []
         starti = 0
