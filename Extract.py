@@ -22,7 +22,7 @@ i: int = 0
 with open(inputFile) as file:
     for line in file:
 
-        states = ['[MARS]','[CONFIG LIST]']
+        states = ['', '[MARS]','[CONFIG LIST]']
         #           1   
         state = 0
 
@@ -32,11 +32,11 @@ with open(inputFile) as file:
 
         #enter state 1 [MARS]
         if (line.strip() == states[1]):
-            i = fileIndex
-            print(f"Changed State to: {i} becasuse of {states[state]}\nExtracting from line {starti} to line {endi}...")
             state = 1
+            i = fileIndex
             starti = fileIndex
             endi = fileIndex + 34
+            print(f"Changed State to: {state} becasuse of {states[state]}\nExtracting from line {starti} to line {endi}...")
 
 
 
