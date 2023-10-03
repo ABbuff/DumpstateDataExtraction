@@ -163,6 +163,7 @@ with open(outputFile,'w',newline='') as writefile,open(inputFile,newline='') as 
 
         #extract Batterystats (state 4)
         if(state == 4):
+            trimmed = line.strip()
             #finish will finish when state is changed at 'set state' level
            
             #close special title
@@ -176,11 +177,13 @@ with open(outputFile,'w',newline='') as writefile,open(inputFile,newline='') as 
                 processNum = 0
 
             #set process
-            if(line.strip() != ''  and  line[0] == 'S'  and  state==4):
+            if(trimmed != ''  and  line[0] == 'S'  and  state==4):
                 processNum = 3
-            if(line.strip() != ''  and  line[2] == 'U'  and  state==4):
+            if(trimmed != ''  and  line[2] == 'U'  and  state==4):
                 processNum = 2
-            elif(line.strip() != ''  and  line[0] == ' '  and  state==4):
+            if(trimmed != ''  and  processNum == 2  and  line[2] == ' '):
+                processNum = 2
+            if(trimmed != ''  and  processNum != 2  and  line[0] == ' '  and  state==4):
                 processNum = 1
             
             #collect prelim data for usage (process 1)
